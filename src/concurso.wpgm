@@ -1,0 +1,9 @@
+import concurso.*
+import wollok.game.*
+
+program principal {
+
+	concursoBaile.iniciar()
+	game.start()
+
+}
