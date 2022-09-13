@@ -1,8 +1,11 @@
 import wollok.game.*
+import martina.*
+import pareja.*
+
 
 object concursoBaile {
 	
-	const participantes = [profe,arcoIris,fanDeTitanic]
+	const participantes = [arcoIris,fanDeTitanic,martina,irina,pareja,robot,dragonBall]
 	
 	method iniciar() {
 		game.title("Concurso de Baile")
@@ -10,10 +13,16 @@ object concursoBaile {
 		game.height(10)
 		game.width(18)	
 		
+		
+		game.addVisualCharacter(profe)
 		participantes.forEach{p=>game.addVisual(p)}
 		
 		keyboard.space().onPressDo({self.presentarse()})
 		keyboard.enter().onPressDo({self.detenerse()})
+		
+		game.onCollideDo(profe,{quien=>game.say(profe,quien.toString())})
+		
+		
 		
 	}
 	
@@ -30,7 +39,7 @@ object concursoBaile {
 object profe{
 	var image = "dino.png"
 	
-	method position() = game.at(1,3)
+	var property position = game.center()
 	
 	method bailar(){
 		game.onTick(1500,"cambiar",{self.cambiarImagen()})
@@ -66,6 +75,7 @@ object arcoIris {
 	}
 
 	method image() = "juego" + colores.get(pos) + ".png"
+//	method image() = "juego" + colores.anyOne() + ".png"
 	
 }
 
